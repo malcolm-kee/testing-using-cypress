@@ -23,4 +23,16 @@ describe('product', () => {
 
         cy.findByText(review).should('be.visible');
     })
+
+    it('can add comment with authenticated user', () => {
+        cy.login();
+
+        cy.visit('/');
+
+        cy.findAllByTestId('productBox')
+        .first()
+        .click();
+
+        cy.findByLabelText('Your Name').should('have.value', 'Test User');
+    })
 })

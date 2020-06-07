@@ -12,6 +12,16 @@ import '@testing-library/cypress/add-commands';
 //
 // -- This is a parent command --
 // Cypress.Commands.add("login", (email, password) => { ... })
+Cypress.Commands.add('login', () => {
+    cy.visit('/login');
+    cy.findByLabelText('Email').type('test@shopit.com');
+    cy.findByLabelText('Password').type('12345678');
+
+    cy.findAllByText('Login').filter('button').click();
+    cy.findByText("You're already login!", {
+        timeout: 5000
+    })
+})
 //
 //
 // -- This is a child command --

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress open",
-    "test:staging": "cypress open --config baseUrl=https://react-ecomm-site.now.sh"
+    "test:staging": "cypress open --config baseUrl=https://react-ecomm-site.now.sh",
+    "test:ci": "cypress run --config video=false"
   },
   "keywords": [],
   "author": "Malcolm Kee",

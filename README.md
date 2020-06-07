@@ -77,4 +77,4 @@ Install [NodeJS](https://nodejs.org/en/download/)
 
     - `cy.visit` will visit the URL that you passed to it
     - `cy.contains` will get the element with the specified text
-    - `.should` assert the element fulfill some requirements. Now we assert the elements that contains the previous text
+    - `.should` assert the element fulfill some requirements. Now we assert the elements that contains the previous text is visible.

@@ -261,3 +261,27 @@ Install [NodeJS](https://nodejs.org/en/download/)
         })
     })
     ```
+
+### 7. Run Tests in Headless Mode
+
+Running tests in headless mode allows us to run the tests as part of CI/CD pipeline.
+
+1. Add another npm script in `package.json`:
+
+    ```diff
+    {
+        ...
+        "scripts": {
+           "test": "cypress open",
+           "test:staging": "cypress open --config baseUrl=https://react-ecomm-site.now.sh",
+    +      "test:ci": "cypress run --config video=false"
+        }
+        ...
+    }
+    ```
+
+1. Run the tests in headless mode:
+
+    ```bash
+    npm run test:ci
+    ```

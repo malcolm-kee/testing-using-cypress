@@ -10,6 +10,8 @@
   "author": "Malcolm Kee",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^4.7.0"
+    "@testing-library/cypress": "^6.0.0",
+    "cypress": "^4.7.0",
+    "faker": "^4.1.0"
   }
 }

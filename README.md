@@ -203,3 +203,24 @@ Install [NodeJS](https://nodejs.org/en/download/)
         })
     })
     ```
+
+### 5. Test Against Different Environment
+
+1. Add another npm script in `package.json`:
+
+    ```diff
+    {
+        ...
+        "scripts": {
+            "test": "cypress open",
+    +       "test:staging": "cypress open --config baseUrl=https://react-ecomm-site.now.sh"
+        }
+        ...
+    }
+    ```
+
+1. Run the tests against the new URL:
+
+    ```bash
+    npm run test:staging
+    ```

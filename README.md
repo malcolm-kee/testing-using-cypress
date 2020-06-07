@@ -68,7 +68,7 @@ Install [NodeJS](https://nodejs.org/en/download/)
     ```js
     describe('homepage', () => {
         it('can show', () => {
-            cy.visit('https://shopit.space/');
+            cy.visit('https://react-ecomm.netlify.app/');
 
             cy.contains('The best shopping site in the web that would saves you most money.').should('be.visible');
         })
@@ -78,3 +78,46 @@ Install [NodeJS](https://nodejs.org/en/download/)
     - `cy.visit` will visit the URL that you passed to it
     - `cy.contains` will get the element with the specified text
     - `.should` assert the element fulfill some requirements. Now we assert the elements that contains the previous text is visible.
+
+### 3. Configure Base URL
+
+1. Update the auto-generated `cypress.json` file with the following content:
+
+    ```json
+    {
+        "baseUrl": "https://react-ecomm.netlify.app"
+    }
+    ```
+
+1. Now update `homepage.spec.js`:
+
+    ```diff
+    describe('homepage', () => {
+        it('can show', () => {
+    -        cy.visit('https://react-ecomm.netlify.app/');
+    +        cy.visit('/');
+
+            cy.contains('The best shopping site in the web that would saves you most money.').should('be.visible');
+        })
+    })
+    ```
+
+    As such the base URL no longer hard-coded in the test. If our URL changes in future, we no longer need to update it in all the tests but only via `cypress.json`.
+
+1. Let's write another test in `homepage.spec.js`:
+
+    ```js
+    describe('homepage', () => {
+        it('can show', () => {
+            ...
+        })
+
+        it('can go to help page', () => {
+            cy.visit('/');
+
+            cy.contains('Help').click();
+
+            cy.contains('Hi, how can we help?').should('be.visible');
+        })
+    })
+    ```

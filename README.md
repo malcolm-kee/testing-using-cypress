@@ -224,3 +224,40 @@ Install [NodeJS](https://nodejs.org/en/download/)
     ```bash
     npm run test:staging
     ```
+
+### 6. Add Custom Command
+
+1. In `cypress/support/commands.js` file, add the following code:
+
+    ```js
+    ...
+    Cypress.Commands.add('login', () => {
+        cy.visit('/login');
+        cy.findByLabelText('Email').type('test@shopit.com');
+        cy.findByLabelText('Password').type('12345678');
+
+        cy.findAllByText('Login').filter('button').click();
+        cy.findByText("You're already login!", {
+            timeout: 5000
+        })
+    })
+    ```
+
+1. Let's add another test in `product.spec.js`:
+
+    ```js
+    describe('product', () => {
+        ...
+        it('can add comment with authenticated user', () => {
+            cy.login();
+
+            cy.visit('/');
+
+            cy.findAllByTestId('productBox')
+            .first()
+            .click();
+
+            cy.findByLabelText('Your Name').should('have.value', 'Test User');
+        })
+    })
+    ```
